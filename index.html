@@ -1,1 +1,184 @@
 <!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>My Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+    *{
+        box-sizing: border-box;
+    }    
+    
+    body{
+        background-color: rgb(199, 197, 197);
+        padding: 0px;
+        }
+
+    h1, h2{
+        font-weight: bold;
+        text-align: center;
+        }
+
+    #main-div{
+        width: 100%;
+        padding: 0%;
+        margin: 0%;
+    }
+
+    #left-div{
+        width: 70%;
+        float: left;
+    }
+
+    #right-div{
+        float: left;
+        width: 30%;
+        height: 600px;
+        overflow-y: scroll;
+        padding: 20px;
+        border: 2px solid black;
+    }
+
+    #insert-div{
+        width: 60%;
+        margin-left: 20%;
+        margin-left: 20%;
+        border: 2px solid black;
+        height: 370px;
+        }
+
+    textarea{
+        width: 96%;
+        margin: 2%;
+        height: 300px;
+        resize: none;
+        font-size: 20px;
+        }
+
+    #input-save-name{
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    input{
+        width: 150px;
+        height: 30px;
+        border-color: black;;
+        font-weight: bold;
+    }
+
+     #save-btn, #clear-btn, #del-btn{
+         height: 30px;
+         width: 80px;
+         cursor: pointer;
+     }  
+
+    #save-btn:hover, #clear-btn:hover, #del-btn:hover{
+        height: 30px;
+        width: 80px;
+        font-weight: bold;
+        cursor: pointer;
+    } 
+
+    </style>
+</head>
+<body>
+
+    <h1>Save your Notes Here....</h1>
+
+    <hr><br>
+
+    <div id="main-div">
+
+        <div id="left-div">
+        <div id="insert-div">
+            <textarea id="input-text"></textarea>
+            <div id="input-save-name">
+                <input type="text" id="input" oninput="check_f_name()" placeholder="File Name">
+                <button id="save-btn" onclick="save()">Save</button>
+                <button id="clear-btn" onclick="document.getElementById('input-text').value = ''; document.getElementById('input').value = '';">Clear</button>
+                <button id="del-btn" onclick="var key = document.getElementById('input').value; localStorage.removeItem(key); display(); document.getElementById('input-text').value = ''; document.getElementById('input').value = '';">Delete</button>
+            </div>
+        </div>
+
+        <div style="margin-left: 35%; margin-top: 15px;">
+                Developed By :- <b><font color="red" size="4px">Mayank Kumar Khurmai</font></b>
+            </div>
+        </div>
+
+        <div id="right-div">
+
+            <h2>Saved Notes</h2>
+            <hr>
+            <div id="f-output">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        
+    
+        function display()
+        {
+                var i;
+                var foutput = document.getElementById("f-output");
+                foutput.innerHTML = "";
+                for(i=0; i<localStorage.length; i++)
+                {
+                    var div = document.createElement("DIV");
+                    div.setAttribute = localStorage.key(i);
+                    div.innerHTML = localStorage.getItem(localStorage.key(i));
+                    div.style.width = "100%";
+                    div.style.height = "40px";
+                    div.style.cursor = "pointer";
+                    div.margin = "5px";
+                    div.className = localStorage.key(i);
+                    foutput.append(div);
+                    foutput.append(document.createElement("HR"));
+
+                    div.onclick = function(){
+                        var text = document.getElementById("input-text");
+                        text.innerHTML = this.innerHTML;
+
+                        document.getElementById("input").value = this.className;
+                    }
+                }
+        }
+
+        display();
+
+        function save()
+        {
+          
+            if(document.getElementById("input").value != "")  
+            {
+                var text = document.getElementById("input-text").value;
+                var fname = document.getElementById("input").value;
+
+                localStorage.setItem(fname, text); 
+
+                display();
+            } 
+            else
+            {
+                document.getElementById("input").focus;
+                document.getElementById("input").style.borderColor = "red";
+            }
+        }
+
+        function check_f_name()
+        {
+                 document.getElementById("input").style.borderColor = "black";
+        }
+
+        
+        
+    </script>
+</body>
+</html>
