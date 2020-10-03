@@ -1,0 +1,54 @@
+*{
+        box-sizing: border-box;
+    }    
+    
+    body{
+        background-color: rgb(199, 197, 197);
+        padding: 0px;
+        }
+
+    h1, h2{
+        font-weight: bold;
+        text-align: center;
+        }
+
+    #main-div{
+        width: 100%;
+        padding: 0%;
+        margin: 0%;
+    }
+
+    #left-div{
+        width: 70%;
+        float: left;
+    }
+
+    #right-div{
+        float: left;
+        width: 30%;
+        height: 600px;
+        overflow-y: scroll;
+        padding: 20px;
+        border: 2px solid black;
+    }
+
+    #insert-div{
+        width: 60%;
+        margin-left: 20%;
+        margin-left: 20%;
+        border: 2px solid black;
+        height: 370px;
+        }
+
+    textarea{
+        width: 96%;
+        margin: 2%;
+        height: 300px;
+        resize: none;
+        font-size: 20px;
+        }
+
+    #input-save-name{
+        width: 65%;
+        margin: 0 auto;
+    }
